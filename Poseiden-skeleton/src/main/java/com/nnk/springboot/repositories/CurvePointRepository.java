@@ -12,10 +12,5 @@ import java.util.Optional;
 public interface CurvePointRepository extends JpaRepository<CurvePoint, Integer> {
 
     List<CurvePoint> findAll();
-
     Optional<CurvePoint> findById(Integer id);
-
-    @Modifying
-    @Query(value="UPDATE CurvePoint curvePoint WHERE curvePoint.id=:id", nativeQuery = true)
-    void updateCurvePoint(Integer id);
 }

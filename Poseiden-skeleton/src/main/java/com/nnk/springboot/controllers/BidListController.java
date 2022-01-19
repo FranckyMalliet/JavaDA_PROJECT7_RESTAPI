@@ -30,8 +30,7 @@ public class BidListController {
     }
 
     @GetMapping("/bidList/add")
-    public String addBidForm(Model model) {
-        model.addAttribute("bids", new BidList());
+    public String addBidForm() {
         return "bidList/add";
     }
 
@@ -42,6 +41,7 @@ public class BidListController {
             return "bidList/add";
         }
 
+        logger.info("Adding a new Bid to database ");
         iBidListService.addNewBidToDatabase(bid);
         model.addAttribute("bids", iBidListService.findAll());
         return "redirect:/bidList/list";

@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,23 +24,29 @@ public class CurvePointService implements ICurvePoint {
     }
 
     public CurvePoint addNewCurvePointToDatabase(CurvePoint curvePoint){
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        curvePoint.setCreationDate(timestamp.from(Instant.now()));
+
         logger.info("Adding a new CurvePoint to the database");
         return curvePointRepository.save(curvePoint);
     }
 
-    public List<CurvePoint> findAllCurvePointInDatabase(){
+    public List<CurvePoint> findAll(){
         logger.info("Retrieving all CurvePoints from database");
         return curvePointRepository.findAll();
     }
 
-    public Optional<CurvePoint> findCurvePointById(Integer id){
+    public CurvePoint findById(Integer id){
         logger.info("Retrieving a CurvePoint with the id number " + id);
-        return curvePointRepository.findById(id);
+        return curvePointRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid curvePoint Id " +id));
     }
 
-    public void updateCurvePoint(Integer id){
-        logger.info("Updating CurvePoint with id number : " + id);
-        curvePointRepository.updateCurvePoint(id);
+    public void updateCurvePoint(CurvePoint curvePoint){
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        curvePoint.setAsOfDate(timestamp.from(Instant.now()));
+
+        logger.info("Updating CurvePoint with id number : " + curvePoint.getCurveId());
+        curvePointRepository.save(curvePoint);
     }
 
     public void deleteCurvePoint(Integer id){

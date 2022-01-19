@@ -8,8 +8,8 @@ import java.util.Optional;
 public interface ICurvePoint {
 
     public CurvePoint addNewCurvePointToDatabase(CurvePoint curvePoint);
-    public List<CurvePoint> findAllCurvePointInDatabase();
-    public Optional<CurvePoint> findCurvePointById(Integer id);
-    public void updateCurvePoint(Integer id);
+    public List<CurvePoint> findAll();
+    public CurvePoint findById(Integer id);
+    public void updateCurvePoint(CurvePoint curvePoint);
     public void deleteCurvePoint(Integer id);
 }
