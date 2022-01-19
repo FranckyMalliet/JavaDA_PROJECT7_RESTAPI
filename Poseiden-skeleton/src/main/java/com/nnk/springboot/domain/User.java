@@ -6,16 +6,30 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="id")
     private Integer id;
+
     @NotBlank(message = "Username is mandatory")
+    @Column(name="username")
     private String username;
+
     @NotBlank(message = "Password is mandatory")
+    @Column(name="password")
     private String password;
+
     @NotBlank(message = "FullName is mandatory")
+    @Column(name="fullname")
     private String fullname;
+
+    @NotBlank(message = "Enabled is mandatory")
+    @Column(name="enabled")
+    private boolean enabled;
+
     @NotBlank(message = "Role is mandatory")
+    @Column(name="role")
     private String role;
 
     public Integer getId() {
@@ -48,6 +62,14 @@ public class User {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getRole() {

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title> Spring Boot </title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+    </head>
+    <body>
+        <h3> LOGIN PAGE </h3>
+
+        <form name="loginForm" method="post" th:action="@{/login}">
+            <div>
+                <input type="text" id="loginUsername" name="username" class="form-control" placeholder="Username">
+            </div>
+
+            <div>
+                <input type="password" id="loginPassword" name="password" class="form-control" placeholder="Password">
+            </div>
+            <div>
+                <input type="submit" id="login_button" value="Login">
+            </div>
+        </form>
+    </body>
+</html>
