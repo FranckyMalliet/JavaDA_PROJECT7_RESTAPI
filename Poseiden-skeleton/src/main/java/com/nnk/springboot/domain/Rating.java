@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "rating")
 public class Rating {
-    // TODO: Map columns in data table RATING with corresponding java fields
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +15,7 @@ public class Rating {
     private Integer id;
 
     @Column(name="moodys_rating")
-    private String moodysRating;
+    private String moodyRating;
 
     @Column(name="sand_prating")
     private String sandPRating;
@@ -35,12 +34,12 @@ public class Rating {
         this.id = id;
     }
 
-    public String getMoodysRating() {
-        return moodysRating;
+    public String getMoodyRating() {
+        return moodyRating;
     }
 
-    public void setMoodysRating(String moodysRating) {
-        this.moodysRating = moodysRating;
+    public void setMoodyRating(String moodyRating) {
+        this.moodyRating = moodyRating;
     }
 
     public String getSandPRating() {

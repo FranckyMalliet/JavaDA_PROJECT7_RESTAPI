@@ -11,8 +11,6 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -40,26 +38,19 @@ public class BidListService implements IBidListService {
     }
 
     public BidList findById(Integer id){
-        return bidListRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id " +id));
+        return bidListRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bid Id " + id));
     }
 
-    public void updateBid(BidList bid){
+    public void update(BidList bid){
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         bid.setRevisionDate(timestamp.from(Instant.now()));
-        System.err.println(bid.getRevisionDate());
 
         logger.info("Updating Bid with id number " + bid.getBidListId());
         bidListRepository.save(bid);
     }
 
-    public void deleteBidById(Integer id){
+    public void deleteById(Integer id){
         logger.info("Deleting Bid with id number " + id);
         bidListRepository.deleteById(id);
-    }
-
-    public void validateBidList(BidList bidList, Errors errors){
-        ValidationUtils.rejectIfEmpty(errors, "BidListId", "fields.required");
-        ValidationUtils.rejectIfEmpty(errors, "account", "fields.required");
-        ValidationUtils.rejectIfEmpty(errors, "type", "fields.required");
     }
 }

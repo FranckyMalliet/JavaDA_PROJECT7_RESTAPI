@@ -1,27 +1,132 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
 	  xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="utf-8"/>
-<title>Home</title>
-<link rel="stylesheet" href="../../css/bootstrap.min.css" >
-</head>
-<body>
-<div class="container">
+	<head>
+	<meta charset="utf-8"/>
+	<title>Home</title>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+	</head>
+	<body>
+		<div class="container">
 
-	<div class="row">
-		<h2>Add New Trade</h2>
-	</div>
+			<div class="row">
+				<h2>Add New Trade</h2>
+			</div>
 
-	<div class="row">
-		<form action="#" th:action="@{/trade/validate}" th:object="${trade}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to input the values of Trade, there are 2 buttons: Save data and Cancel to the list Trade
-			 -->
+			<div class="row">
+				<form action="#" th:action="@{/trade/validate}" th:object="${trade}" method="post" class="form-horizontal" style="width: 100%">
+					<div class="form-group">
+						<label for="account" class="col-sm-2 control-label">Account</label>
+						<div class="col-sm-10">
+							<input type="text" th:value="${account}" id="account" name="account" placeholder="Account" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="type" class="col-sm-2 control-label">Type</label>
+						<div class="col-sm-10">
+							<input type="text" th:value="${type}" id="type" name="type" placeholder="Type" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="buyQuantity" class="col-sm-2 control-label">Buy Quantity</label>
+						<div class="col-sm-10">
+							<input type="number" step="0.01" th:value="${buyQuantity}" name="buyQuantity" id="buyQuantity" placeholder="Buy Quantity" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="sellQuantity" class="col-sm-2 control-label">Sell Quantity</label>
+						<div class="col-sm-10">
+							<input type="number" step="0.01" th:value="${sellQuantity}" name="sellQuantity" id="sellQuantity" placeholder="Sell Quantity" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="buyPrice" class="col-sm-2 control-label">Buy Price</label>
+						<div class="col-sm-10">
+							<input type="number" step="0.01" th:value="${buyPrice}" name="buyPrice" id="buyPrice" placeholder="Buy Price" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="sellPrice" class="col-sm-2 control-label">Sell Price</label>
+						<div class="col-sm-10">
+							<input type="number" step="0.01" th:value="${sellPrice}" name="sellPrice" id="sellPrice" placeholder="Sell Price" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="security" class="col-sm-2 control-label">Security</label>
+						<div class="col-sm-10">
+							<input type="text" th:value="${security}" name="security" id="security" placeholder="Security" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="status" class="col-sm-2 control-label">Status</label>
+						<div class="col-sm-10">
+							<input type="text" th:value="${status}" name="status" id="status" placeholder="Status" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="trader" class="col-sm-2 control-label">Trader</label>
+						<div class="col-sm-10">
+							<input type="text" th:value="${trader}" name="trader" id="trader" placeholder="Trader" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="benchmark" class="col-sm-2 control-label">Benchmark</label>
+						<div class="col-sm-10">
+							<input type="text" th:value="${benchmark}" name="benchmark" id="benchmark" placeholder="Benchmark" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="book" class="col-sm-2 control-label">Book</label>
+						<div class="col-sm-10">
+							<input type="text" th:value="${book}" name="book" id="book" placeholder="Book" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="creationName" class="col-sm-2 control-label">Creation Name</label>
+						<div class="col-sm-10">
+							<input type="text" th:value="${creationName}" name="creationName" id="creationName" placeholder="Creation Name" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="revisionName" class="col-sm-2 control-label">Revision Name</label>
+						<div class="col-sm-10">
+							<input type="text" th:value="${revisionName}" name="revisionName" id="revisionName" placeholder="Revision Name" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="dealName" class="col-sm-2 control-label">Deal Name</label>
+						<div class="col-sm-10">
+							<input type="text" th:value="${dealName}" name="dealName" id="dealName" placeholder="Deal Name" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="dealType" class="col-sm-2 control-label">Deal Type</label>
+						<div class="col-sm-10">
+							<input type="text" th:value="${dealType}" name="dealType" id="dealType" placeholder="Deal Type" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="sourceListId" class="col-sm-2 control-label">SourceList Id</label>
+						<div class="col-sm-10">
+							<input type="text" th:value="${sourceListId}" name="sourceListId" id="sourceListId" placeholder="SourceList Id" class="col-4">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="side" class="col-sm-2 control-label">Side</label>
+						<div class="col-sm-10">
+							<input type="text" th:value="${side}" name="side" id="side" placeholder="Side" class="col-4">
+						</div>
+					</div>
 
-		</form>
-	</div>
 
-</div>
-</body>
+					<div class="form-group">
+						<div class="col-sm-12">
+							<a class="btn btn-danger btn-sm" href="/trade/list">Cancel</a>
+							<input class="btn btn-primary btn-sm" type="submit" value="Add Trade">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
 </html>

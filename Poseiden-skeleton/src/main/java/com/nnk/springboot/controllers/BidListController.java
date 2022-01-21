@@ -13,7 +13,6 @@ import javax.validation.Valid;
 
 @Controller
 public class BidListController {
-    // TODO: Inject Bid service
 
     private final static Logger logger = LoggerFactory.getLogger(BidListController.class);
     private final IBidListService iBidListService;
@@ -41,8 +40,9 @@ public class BidListController {
             return "bidList/add";
         }
 
-        logger.info("Adding a new Bid to database ");
         iBidListService.addNewBidToDatabase(bid);
+
+        logger.info("Adding a new Bid to database ");
         model.addAttribute("bids", iBidListService.findAll());
         return "redirect:/bidList/list";
     }
@@ -62,14 +62,18 @@ public class BidListController {
         }
 
         bid.setBidListId(id);
-        iBidListService.updateBid(bid);
+        iBidListService.update(bid);
+
+        logger.info("Updating Bid number " + id);
         model.addAttribute("bids", iBidListService.findAll());
         return "redirect:/bidList/list";
     }
 
     @GetMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
-        iBidListService.deleteBidById(id);
+        iBidListService.deleteById(id);
+
+        logger.info("Deleting Bid number " + id);
         model.addAttribute("bids", iBidListService.findAll());
         return "redirect:/bidList/list";
     }

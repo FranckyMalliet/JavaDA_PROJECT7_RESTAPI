@@ -41,7 +41,7 @@ public class CurvePointService implements ICurvePoint {
         return curvePointRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid curvePoint Id " +id));
     }
 
-    public void updateCurvePoint(CurvePoint curvePoint){
+    public void update(CurvePoint curvePoint){
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         curvePoint.setAsOfDate(timestamp.from(Instant.now()));
 
@@ -49,7 +49,7 @@ public class CurvePointService implements ICurvePoint {
         curvePointRepository.save(curvePoint);
     }
 
-    public void deleteCurvePoint(Integer id){
+    public void deleteById(Integer id){
         logger.info("Deleting CurvePoint with id number : " + id);
         curvePointRepository.deleteById(id);
     }

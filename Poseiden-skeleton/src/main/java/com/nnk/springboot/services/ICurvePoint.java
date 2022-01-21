@@ -10,6 +10,6 @@ public interface ICurvePoint {
     public CurvePoint addNewCurvePointToDatabase(CurvePoint curvePoint);
     public List<CurvePoint> findAll();
     public CurvePoint findById(Integer id);
-    public void updateCurvePoint(CurvePoint curvePoint);
-    public void deleteCurvePoint(Integer id);
+    public void update(CurvePoint curvePoint);
+    public void deleteById(Integer id);
 }

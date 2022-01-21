@@ -9,6 +9,6 @@ public interface IBidListService {
     public BidList addNewBidToDatabase(BidList bid);
     public List<BidList> findAll();
     public BidList findById(Integer id);
-    public void updateBid(BidList bid);
-    public void deleteBidById(Integer id);
+    public void update(BidList bid);
+    public void deleteById(Integer id);
 }

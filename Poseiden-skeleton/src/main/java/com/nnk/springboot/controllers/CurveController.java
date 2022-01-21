@@ -66,13 +66,17 @@ public class CurveController {
 
         curvePoint.setCurveId(id);
         iCurvePoint.addNewCurvePointToDatabase(curvePoint);
+
+        logger.info("Updating CurvePoint number " + id);
         model.addAttribute("curvePoints", iCurvePoint.findAll());
         return "redirect:/curvePoint/list";
     }
 
     @GetMapping("/curvePoint/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
-        iCurvePoint.deleteCurvePoint(id);
+        iCurvePoint.deleteById(id);
+
+        logger.info("Deleting CurvePoint number " + id);
         model.addAttribute("curvePoints", iCurvePoint.findAll());
         return "redirect:/curvePoint/list";
     }
