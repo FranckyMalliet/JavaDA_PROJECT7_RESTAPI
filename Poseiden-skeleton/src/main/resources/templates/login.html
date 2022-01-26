@@ -1,23 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
     <head>
+        <meta charset="utf-8"/>
         <title> Spring Boot </title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     </head>
     <body>
-        <h3> LOGIN PAGE </h3>
+        <div class="container">
 
-        <form name="loginForm" method="post" th:action="@{/login}">
-            <div>
-                <input type="text" id="loginUsername" name="username" class="form-control" placeholder="Username">
+            <div class="row">
+                <h3> LOGIN PAGE </h3>
             </div>
 
-            <div>
-                <input type="password" id="loginPassword" name="password" class="form-control" placeholder="Password">
+            <div class="row">
+                <form name="loginForm" method="post" th:action="@{/login}" class="form-horizontal" style="width: 100%">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input type="text" id="loginUsername" name="username" placeholder="Username" class="col-5">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input type="password" id="loginPassword" name="password" placeholder="Password" class="col-5">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input class="btn btn-primary btn-sm" type="submit" id="login_button" value="Login">
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div>
-                <input type="submit" id="login_button" value="Login">
+
+            <div class="row">
+                <h4><a href="https://github.com/login/oauth/authorize?scope=user:email&client_id=<%= client_id %>">GitHub</a></h4>
+                <h4><a th:href="@{/oauth2/authorization/github}">Login with Github</a></h4>
             </div>
-        </form>
+        </div>
     </body>
 </html>

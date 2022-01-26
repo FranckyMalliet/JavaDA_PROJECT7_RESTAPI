@@ -24,6 +24,13 @@ public class RatingController {
         this.iRatingService = iRatingService;
     }
 
+    /**
+     * Method calling a html page displaying all Ratings entities
+     * from a database
+     * @param model
+     * @return a String of a html page with all Ratings
+     */
+
     @RequestMapping("/rating/list")
     public String home(Model model)
     {
@@ -31,10 +38,26 @@ public class RatingController {
         return "rating/list";
     }
 
+    /**
+     * Method calling a html page with a form that can add a new Rating
+     * to the database
+     * @return a String of a html page
+     */
+
     @GetMapping("/rating/add")
-    public String addRatingForm(Rating rating) {
+    public String addRatingForm() {
         return "rating/add";
     }
+
+    /**
+     * Method validating or not a new Bid. If it's validated,
+     * add it to the database
+     * @param rating
+     * @param result
+     * @param model
+     * @return a String of a html page with all Ratings after adding
+     * a new Rating to the database
+     */
 
     @PostMapping("/rating/validate")
     public String validate(@Valid Rating rating, BindingResult result, Model model) {
@@ -50,12 +73,31 @@ public class RatingController {
         return "redirect:/rating/list";
     }
 
+    /**
+     * Given a Rating found by his ID, this method call a html form with
+     * the Rating data already written, ready to be updated
+     * @param id
+     * @param model
+     * @return a String of a html page
+     */
+
     @GetMapping("/rating/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         Rating rating = iRatingService.findById(id);
         model.addAttribute("rating", rating);
         return "rating/update";
     }
+
+    /**
+     * Method validating or not a Rating. If it's validated, update it
+     * to the database
+     * @param id
+     * @param rating
+     * @param result
+     * @param model
+     * @return a String of a html page with all Ratings after updating a Bid
+     *  in the database
+     */
 
     @PostMapping("/rating/update/{id}")
     public String updateRating(@PathVariable("id") Integer id, @Valid Rating rating,
@@ -72,6 +114,14 @@ public class RatingController {
         model.addAttribute("ratings", iRatingService.findAll());
         return "redirect:/rating/list";
     }
+
+    /**
+     * Method used to delete Rating entities in the database
+     * @param id
+     * @param model
+     * @return a String of a html page with all Ratings after deleting a Bid
+     * in the database
+     */
 
     @GetMapping("/rating/delete/{id}")
     public String deleteRating(@PathVariable("id") Integer id, Model model) {

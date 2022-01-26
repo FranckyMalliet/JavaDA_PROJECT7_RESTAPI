@@ -5,7 +5,7 @@ import com.nnk.springboot.domain.CurvePoint;
 import java.util.List;
 import java.util.Optional;
 
-public interface ICurvePoint {
+public interface ICurvePointService {
 
     public CurvePoint addNewCurvePointToDatabase(CurvePoint curvePoint);
     public List<CurvePoint> findAll();

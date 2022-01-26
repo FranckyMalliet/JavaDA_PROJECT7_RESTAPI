@@ -1,6 +1,5 @@
 package com.nnk.springboot.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,8 +15,11 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class JdbcSecurityConfiguration extends WebSecurityConfigurerAdapter{
 
-    @Autowired
-    private DataSource dataSource;
+    private final DataSource dataSource;
+
+    public JdbcSecurityConfiguration(DataSource dataSource){
+        this.dataSource = dataSource;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -32,48 +34,40 @@ public class JdbcSecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeRequests()
-                .antMatchers("/min/**", "/css/**", "/js/**", "/images/**", "/static/**").permitAll()
-                .anyRequest()
-                .authenticated()
+        httpSecurity/*.regexMatcher("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$?!%*&_#^]){8,}$")*/
+                    .authorizeRequests()
+                    .antMatchers("/min/**", "/css/**", "/js/**", "/images/**", "/static/**", "/login")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/home", true)
-                .permitAll();
+                    .formLogin()
+                    .loginPage("/login")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .defaultSuccessUrl("/home", true)
+                    .permitAll()
+                .and()
+                    .exceptionHandling()
+                    .accessDeniedPage("/error")
+                .and()
+                    .oauth2Login()
+                    .loginPage("/login")
+                    //.authorizationEndpoint()
+                    //.baseUri("/login/oauth2/authorization/github")
+                    //.loginPage("/login/oauth2")
+
+                /*.and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/login")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)*/;
     }
 
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
-
-    /*public class UserLoginValidator implements Validator {
-
-        private static final int MINIMUM_PASSWORD_LENGTH = 6;
-        private static Pattern pattern;
-        private static Matcher matcher;
-
-
-        public boolean supports(Class clazz) {
-            return UserLogin.class.isAssignableFrom(clazz);
-        }
-
-        public void validate(Object target, Errors errors) {
-            pattern = Pattern.compile("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$?!%*&_#^]){8,}$");
-            matcher = pattern.matcher("ADD LINK TO PASSWORD IN DATABASE");
-
-            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "field.required");
-            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "field.required");
-            UserLogin login = (UserLogin) target;
-            if (login.getPassword() != null || matcher(login.getPassword).isFalse()) {
-                errors.rejectValue("password", "field.min.length",
-                        new Object[]{Integer.valueOf(MINIMUM_PASSWORD_LENGTH)},
-                        "The password must be at least [" + MINIMUM_PASSWORD_LENGTH + "] characters in length.");
-            }
-        }
-    }*/
 }

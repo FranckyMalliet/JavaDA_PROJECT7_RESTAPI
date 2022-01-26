@@ -24,6 +24,13 @@ public class TradeController {
         this.iTradeService = iTradeService;
     }
 
+    /**
+     * Method calling a html page displaying all Trades entities
+     * from a database
+     * @param model
+     * @return a String of a html page with all Trades
+     */
+
     @RequestMapping("/trade/list")
     public String home(Model model)
     {
@@ -31,10 +38,26 @@ public class TradeController {
         return "trade/list";
     }
 
+    /**
+     * Method calling a html page with a form that can add a new Trade
+     * to the database
+     * @return a String of a html page
+     */
+
     @GetMapping("/trade/add")
-    public String addUser(Trade bid) {
+    public String addUser() {
         return "trade/add";
     }
+
+    /**
+     * Method validating or not a new Trade. If it's validated,
+     * add it to the database
+     * @param trade
+     * @param result
+     * @param model
+     * @return a String of a html page with all Bids after adding
+     * a new Trade to the database
+     */
 
     @PostMapping("/trade/validate")
     public String validate(@Valid Trade trade, BindingResult result, Model model) {
@@ -50,12 +73,31 @@ public class TradeController {
         return "redirect:/trade/list";
     }
 
+    /**
+     * Given a Trade found by his ID, this method call a html form with
+     * the Trade data already written, ready to be updated
+     * @param id
+     * @param model
+     * @return a String of a html page
+     */
+
     @GetMapping("/trade/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         Trade trade = iTradeService.findById(id);
         model.addAttribute("trade", trade);
         return "trade/update";
     }
+
+    /**
+     * Method validating or not a Trade. If it's validated, update it
+     * to the database
+     * @param id
+     * @param trade
+     * @param result
+     * @param model
+     * @return a String of a html page with all Trades after updating a Trade
+     * in the database
+     */
 
     @PostMapping("/trade/update/{id}")
     public String updateTrade(@PathVariable("id") Integer id, @Valid Trade trade,
@@ -72,6 +114,14 @@ public class TradeController {
         model.addAttribute("trades", iTradeService.findAll());
         return "redirect:/trade/list";
     }
+
+    /**
+     * Method used to delete Trades entities in the database
+     * @param id
+     * @param model
+     * @return a String of a html page with all Trades after deleting a Bid
+     * in the database
+     */
 
     @GetMapping("/trade/delete/{id}")
     public String deleteTrade(@PathVariable("id") Integer id, Model model) {
