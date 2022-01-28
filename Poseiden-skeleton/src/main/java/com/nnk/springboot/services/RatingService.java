@@ -48,7 +48,7 @@ public class RatingService implements IRatingService {
 
     public Rating findById(Integer id){
         logger.info("Retrieving Rating with id number " + id + " from database");
-        return ratingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rating Id number " + id));
+        return ratingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rating Id " + id));
     }
 
     /**

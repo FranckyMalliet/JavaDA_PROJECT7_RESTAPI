@@ -2,6 +2,7 @@ package com.nnk.springboot;
 
 import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.repositories.RuleNameRepository;
+import com.nnk.springboot.services.IRuleNameService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class RuleTests {
 
 	@Autowired
-	private RuleNameRepository ruleNameRepository;
+	private IRuleNameService iRuleNameService;
 
 	@Test
 	public void ruleTest() {
@@ -25,23 +26,24 @@ public class RuleTests {
 		rule.setName("Rule Name");
 
 		// Save
-		rule = ruleNameRepository.save(rule);
+		rule = iRuleNameService.addNewRuleNameToDatabase(rule);
 		Assert.assertNotNull(rule.getId());
 		Assert.assertTrue(rule.getName().equals("Rule Name"));
 
 		// Update
 		rule.setName("Rule Name Update");
-		rule = ruleNameRepository.save(rule);
+		iRuleNameService.update(rule);
 		Assert.assertTrue(rule.getName().equals("Rule Name Update"));
 
 		// Find
-		List<RuleName> listResult = ruleNameRepository.findAll();
+		List<RuleName> listResult = iRuleNameService.findAll();
 		Assert.assertTrue(listResult.size() > 0);
 
 		// Delete
 		Integer id = rule.getId();
-		ruleNameRepository.delete(rule);
-		Optional<RuleName> ruleList = ruleNameRepository.findById(id);
-		Assert.assertFalse(ruleList.isPresent());
+		iRuleNameService.deleteById(id);
+
+		Exception exception = Assert.assertThrows(IllegalArgumentException.class, () -> iRuleNameService.findById(id));
+		Assert.assertEquals("Invalid ruleName Id " + id, exception.getMessage());
 	}
 }

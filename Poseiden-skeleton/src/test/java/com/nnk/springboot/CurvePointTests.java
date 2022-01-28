@@ -1,7 +1,7 @@
 package com.nnk.springboot;
 
 import com.nnk.springboot.domain.CurvePoint;
-import com.nnk.springboot.repositories.CurvePointRepository;
+import com.nnk.springboot.services.ICurvePointService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +17,7 @@ import java.util.Optional;
 public class CurvePointTests {
 
 	@Autowired
-	private CurvePointRepository curvePointRepository;
+	private ICurvePointService iCurvePointService;
 
 	@Test
 	public void curvePointTest() {
@@ -25,24 +25,24 @@ public class CurvePointTests {
 		curvePoint.setCurveId(10);
 
 		// Save
-		curvePoint = curvePointRepository.save(curvePoint);
+		curvePoint = iCurvePointService.addNewCurvePointToDatabase(curvePoint);
 		Assert.assertNotNull(curvePoint.getId());
 		Assert.assertTrue(curvePoint.getCurveId() == 10);
 
 		// Update
 		curvePoint.setCurveId(20);
-		curvePoint = curvePointRepository.save(curvePoint);
+		iCurvePointService.update(curvePoint);
 		Assert.assertTrue(curvePoint.getCurveId() == 20);
 
 		// Find
-		List<CurvePoint> listResult = curvePointRepository.findAll();
+		List<CurvePoint> listResult = iCurvePointService.findAll();
 		Assert.assertTrue(listResult.size() > 0);
 
 		// Delete
 		Integer id = curvePoint.getId();
-		curvePointRepository.delete(curvePoint);
-		Optional<CurvePoint> curvePointList = curvePointRepository.findById(id);
-		Assert.assertFalse(curvePointList.isPresent());
-	}
+		iCurvePointService.deleteById(id);
 
+		Exception exception = Assert.assertThrows(IllegalArgumentException.class, () -> iCurvePointService.findById(id));
+		Assert.assertEquals("Invalid curvePoint Id " + id, exception.getMessage());
+	}
 }

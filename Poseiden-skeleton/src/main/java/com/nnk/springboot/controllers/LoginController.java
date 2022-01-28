@@ -24,10 +24,10 @@ public class LoginController {
         this.userRepository = userRepository;
     }
 
-    /*@GetMapping("/")
+    @GetMapping("/")
     public String anywhereLogin(){
         return "redirect:/login";
-    }*/
+    }
 
     @GetMapping("/login")
     public String login() {

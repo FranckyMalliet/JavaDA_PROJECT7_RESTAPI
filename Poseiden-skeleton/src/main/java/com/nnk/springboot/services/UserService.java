@@ -1,25 +1,24 @@
 package com.nnk.springboot.services;
 
-import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.domain.User;
-import com.nnk.springboot.repositories.RuleNameRepository;
 import com.nnk.springboot.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class UserService implements IUserService {
 
     private final static Logger logger = LoggerFactory.getLogger(UserService.class);
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository){
-        this.userRepository=userRepository;
+        this.userRepository = userRepository;
     }
 
     /**

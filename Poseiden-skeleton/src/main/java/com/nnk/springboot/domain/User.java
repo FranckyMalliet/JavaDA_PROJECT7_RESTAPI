@@ -2,6 +2,8 @@ package com.nnk.springboot.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "users")
@@ -17,6 +19,7 @@ public class User {
     private String username;
 
     @NotBlank(message = "Password is mandatory")
+    @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$?!%*&_#^]){8,}$", message = "Wrong password")
     @Column(name="password")
     private String password;
 
@@ -24,11 +27,11 @@ public class User {
     @Column(name="fullname")
     private String fullname;
 
-    @NotBlank(message = "Enabled is mandatory")
+    @NotNull
     @Column(name="enabled")
     private boolean enabled;
 
-    @NotBlank(message = "Role is mandatory")
+    @NotBlank(message="Role is mandatory")
     @Column(name="role")
     private String role;
 

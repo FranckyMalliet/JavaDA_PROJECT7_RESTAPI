@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional(rollbackFor = Exception.class)
 public class CurvePointService implements ICurvePointService {
 
-    private final Logger logger = LoggerFactory.getLogger(CurvePointService.class);
+    private final static Logger logger = LoggerFactory.getLogger(CurvePointService.class);
     private final CurvePointRepository curvePointRepository;
 
     public CurvePointService(CurvePointRepository curvePointRepository){

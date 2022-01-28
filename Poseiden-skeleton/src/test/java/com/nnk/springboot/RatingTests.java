@@ -2,6 +2,7 @@ package com.nnk.springboot;
 
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.repositories.RatingRepository;
+import com.nnk.springboot.services.IRatingService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class RatingTests {
 
 	@Autowired
-	private RatingRepository ratingRepository;
+	private IRatingService iRatingService;
 
 	@Test
 	public void ratingTest() {
@@ -25,23 +26,24 @@ public class RatingTests {
 		rating.setOrderNumber(10);
 
 		// Save
-		rating = ratingRepository.save(rating);
+		rating = iRatingService.addNewRatingToDatabase(rating);
 		Assert.assertNotNull(rating.getId());
 		Assert.assertTrue(rating.getOrderNumber() == 10);
 
 		// Update
 		rating.setOrderNumber(20);
-		rating = ratingRepository.save(rating);
+		iRatingService.update(rating);
 		Assert.assertTrue(rating.getOrderNumber() == 20);
 
 		// Find
-		List<Rating> listResult = ratingRepository.findAll();
+		List<Rating> listResult = iRatingService.findAll();
 		Assert.assertTrue(listResult.size() > 0);
 
 		// Delete
 		Integer id = rating.getId();
-		ratingRepository.delete(rating);
-		Optional<Rating> ratingList = ratingRepository.findById(id);
-		Assert.assertFalse(ratingList.isPresent());
+		iRatingService.deleteById(id);
+
+		Exception exception = Assert.assertThrows(IllegalArgumentException.class, () -> iRatingService.findById(id));
+		Assert.assertEquals("Invalid rating Id " + id, exception.getMessage());
 	}
 }

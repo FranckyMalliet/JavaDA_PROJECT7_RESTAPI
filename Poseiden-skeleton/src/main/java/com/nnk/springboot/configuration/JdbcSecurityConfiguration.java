@@ -2,6 +2,7 @@ package com.nnk.springboot.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -34,9 +35,8 @@ public class JdbcSecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity/*.regexMatcher("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$?!%*&_#^]){8,}$")*/
-                    .authorizeRequests()
-                    .antMatchers("/min/**", "/css/**", "/js/**", "/images/**", "/static/**", "/login")
+        httpSecurity.authorizeRequests()
+                    .antMatchers("/min/**", "/css/**", "/js/**", "/images/**", "/static/**", "/login/**", "/oauth2/authorization/github/**")
                     .permitAll()
                     .anyRequest()
                     .authenticated()
@@ -52,6 +52,7 @@ public class JdbcSecurityConfiguration extends WebSecurityConfigurerAdapter{
                     .accessDeniedPage("/error")
                 .and()
                     .oauth2Login()
+                    .defaultSuccessUrl("/home", true)
                     .loginPage("/login")
                     //.authorizationEndpoint()
                     //.baseUri("/login/oauth2/authorization/github")

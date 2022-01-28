@@ -15,7 +15,7 @@ import java.util.Optional;
 public class RuleNameService implements IRuleNameService{
 
     private final static Logger logger = LoggerFactory.getLogger(RuleNameService.class);
-    private RuleNameRepository ruleNameRepository;
+    private final RuleNameRepository ruleNameRepository;
 
     public RuleNameService(RuleNameRepository ruleNameRepository){
         this.ruleNameRepository=ruleNameRepository;
