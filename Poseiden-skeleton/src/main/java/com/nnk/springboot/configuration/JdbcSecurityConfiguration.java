@@ -2,7 +2,6 @@ package com.nnk.springboot.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -53,18 +52,7 @@ public class JdbcSecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .and()
                     .oauth2Login()
                     .defaultSuccessUrl("/home", true)
-                    .loginPage("/login")
-                    //.authorizationEndpoint()
-                    //.baseUri("/login/oauth2/authorization/github")
-                    //.loginPage("/login/oauth2")
-
-                /*.and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .deleteCookies("JSESSIONID")
-                .logoutSuccessUrl("/login")
-                .invalidateHttpSession(true)
-                .clearAuthentication(true)*/;
+                    .loginPage("/login");
     }
 
     @Bean

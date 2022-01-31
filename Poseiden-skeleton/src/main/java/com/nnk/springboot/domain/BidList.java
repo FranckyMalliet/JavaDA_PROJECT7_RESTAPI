@@ -1,7 +1,5 @@
 package com.nnk.springboot.domain;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 
