@@ -1,28 +1,31 @@
 package com.nnk.springboot.domain;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
-
 
 @Entity
 @Table(name = "curvepoint")
 public class CurvePoint {
-    // TODO: Map columns in data table CURVEPOINT with corresponding java fields
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
 
+    @NumberFormat
     @Column(name="curve_id")
     private Integer curveId;
 
     @Column(name="as_of_date")
     private Timestamp asOfDate;
 
+    @NumberFormat
     @Column(name="term")
     private Double term;
 
+    @NumberFormat
     @Column(name="value")
     private Double value;
 

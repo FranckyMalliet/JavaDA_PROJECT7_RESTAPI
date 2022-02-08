@@ -1,5 +1,7 @@
 package com.nnk.springboot.domain;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -18,15 +20,19 @@ public class BidList {
     @Column(name="type")
     private String type;
 
+    @NumberFormat
     @Column(name="bid_quantity")
     private Double bidQuantity;
 
+    @NumberFormat
     @Column(name="ask_quantity")
     private Double askQuantity;
 
+    @NumberFormat
     @Column(name="bid")
     private Double bid;
 
+    @NumberFormat
     @Column(name="ask")
     private Double ask;
 

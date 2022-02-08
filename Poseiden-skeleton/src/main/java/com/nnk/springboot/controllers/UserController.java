@@ -53,7 +53,8 @@ public class UserController {
 
     @GetMapping("/user/add")
     @RolesAllowed("ADMIN")
-    public String addUser() {
+    public String addUser(User user, Model model) {
+        model.addAttribute("user", user);
         return "user/add";
     }
 

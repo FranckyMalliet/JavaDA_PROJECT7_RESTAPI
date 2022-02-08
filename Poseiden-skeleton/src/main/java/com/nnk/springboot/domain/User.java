@@ -10,7 +10,7 @@ import javax.validation.constraints.Pattern;
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Integer id;
 
@@ -19,7 +19,7 @@ public class User {
     private String username;
 
     @NotBlank(message = "Password is mandatory")
-    @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$?!%*&_#^]){8,}$", message = "Wrong password")
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$", message ="Wrong password")
     @Column(name="password")
     private String password;
 

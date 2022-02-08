@@ -1,5 +1,7 @@
 package com.nnk.springboot.domain;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,6 +22,7 @@ public class Rating {
     @Column(name="fitch_rating")
     private String fitchRating;
 
+    @NumberFormat
     @Column(name="order_number")
     private Integer orderNumber;
 

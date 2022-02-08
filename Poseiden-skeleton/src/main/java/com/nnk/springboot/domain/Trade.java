@@ -1,8 +1,9 @@
 package com.nnk.springboot.domain;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
-
 
 @Entity
 @Table(name = "trade")
@@ -19,15 +20,19 @@ public class Trade {
     @Column(name="type")
     private String type;
 
+    @NumberFormat
     @Column(name="buy_quantity")
     private Double buyQuantity;
 
+    @NumberFormat
     @Column(name="sell_quantity")
     private Double sellQuantity;
 
+    @NumberFormat
     @Column(name="buy_price")
     private Double buyPrice;
 
+    @NumberFormat
     @Column(name="sell_price")
     private Double sellPrice;
 

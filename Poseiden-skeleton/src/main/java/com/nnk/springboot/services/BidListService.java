@@ -44,7 +44,7 @@ public class BidListService implements IBidListService {
      */
 
     public List<BidList> findAll(){
-        logger.info("Retrieving all Bid from database");
+        logger.info("Retrieving all Bids from database");
         return bidListRepository.findAll();
     }
 

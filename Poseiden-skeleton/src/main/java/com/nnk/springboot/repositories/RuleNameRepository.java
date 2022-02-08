@@ -8,7 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 import java.util.Optional;
 
-
 public interface RuleNameRepository extends JpaRepository<RuleName, Integer>, CrudRepository<RuleName, Integer> {
 
     List<RuleName> findAll();

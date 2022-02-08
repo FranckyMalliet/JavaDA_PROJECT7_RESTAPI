@@ -68,6 +68,7 @@ public class CurveController {
 
         logger.info("Adding a new CurvePoint to database ");
         iCurvePoint.addNewCurvePointToDatabase(curvePoint);
+
         model.addAttribute("curvePoints", iCurvePoint.findAll());
         return "redirect:/curvePoint/list";
     }
