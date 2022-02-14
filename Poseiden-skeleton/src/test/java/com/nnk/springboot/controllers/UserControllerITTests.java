@@ -1,4 +1,4 @@
-package com.nnk.springboot;
+package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.domain.User;
@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-public class UserITTests {
+public class UserControllerITTests {
 
     @Autowired
     private WebApplicationContext webApplicationContext;

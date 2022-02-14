@@ -1,4 +1,4 @@
-package com.nnk.springboot;
+package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.domain.RuleName;
@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-public class RuleITTests {
+public class RuleNameControllerITTests {
 
     @Autowired
     private WebApplicationContext webApplicationContext;

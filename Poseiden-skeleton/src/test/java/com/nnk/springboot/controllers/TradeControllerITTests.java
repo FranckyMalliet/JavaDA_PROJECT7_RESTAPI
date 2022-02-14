@@ -1,4 +1,4 @@
-package com.nnk.springboot;
+package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.domain.Trade;
@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-public class TradeITTests {
+public class TradeControllerITTests {
 
     @Autowired
     private WebApplicationContext webApplicationContext;

@@ -1,4 +1,4 @@
-package com.nnk.springboot;
+package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.domain.Rating;
@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-public class RatingITTests {
+public class RatingControllerITTests {
 
     @Autowired
     private WebApplicationContext webApplicationContext;

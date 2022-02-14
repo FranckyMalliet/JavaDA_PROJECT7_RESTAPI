@@ -1,4 +1,4 @@
-package com.nnk.springboot;
+package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.services.ICurvePointService;
@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-public class CurvePointITTests {
+public class CurvePointControllerITTests {
 
     @Autowired
     private WebApplicationContext webApplicationContext;

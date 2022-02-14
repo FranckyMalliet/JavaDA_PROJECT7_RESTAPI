@@ -1,4 +1,4 @@
-package com.nnk.springboot;
+package com.nnk.springboot.controllers;
 
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-public class ViewITTests {
+public class ViewControllerITTests {
 
     @Autowired
     private WebApplicationContext webApplicationContext;

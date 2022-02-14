@@ -31,7 +31,6 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th>Id</th>
 							<th>CurvePointId</th>
 							<th>Term</th>
 							<th>Value</th>
@@ -41,7 +40,6 @@
 					<tbody>
 					<tr th:each="CurvePoint : ${curvePoints}">
 						<td th:text="${CurvePoint.id}"></td>
-						<td th:text="${CurvePoint.curveId}"></td>
 						<td th:text="${CurvePoint.term}"></td>
 						<td th:text="${CurvePoint.value}"></td>
 						<td>
